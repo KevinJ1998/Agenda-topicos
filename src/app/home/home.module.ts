@@ -5,15 +5,18 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
+import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 
-@NgModule({
+@NgModule( {
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    ExploreContainerComponentModule
   ],
-  declarations: [HomePage]
-})
-export class HomePageModule {}
+  declarations: [ HomePage ]
+} )
+export class HomePageModule {
+}

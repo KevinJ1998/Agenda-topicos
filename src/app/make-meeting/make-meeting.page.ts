@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MeetingService } from '../shared/meeting.service';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+
 
 @Component( {
   selector: 'app-make-meeting',
@@ -13,21 +14,26 @@ export class MakeMeetingPage implements OnInit {
   meetingForm: FormGroup;
   makingMeeting: boolean;
   minDate: string = new Date().toISOString();
-  maxDate: string = new Date().toISOString();
 
-  constructor( private mtService: MeetingService, private router: Router, public fb: FormBuilder ) { }
+
+  constructor(
+    private mtService: MeetingService,
+    private router: Router,
+    public fb: FormBuilder ) { }
 
   ngOnInit() {
     this.meetingForm = this.fb.group( {
-      name: [ '' ],
-      lastName: [ '' ],
-      address: [ '' ],
-      email: [ '' ],
-      phone: [ '' ],
-      description: [ '' ],
+      name: new FormControl( '', [ Validators.required ] ),
+      lastName: new FormControl( '' ),
+      address: new FormControl( '' ),
+      email: new FormControl( '', [ Validators.email ] ),
+      phone: new FormControl( '' ),
+      description: new FormControl( '' ),
       date: [ new Date().toISOString() ]
     } );
+
   }
+
 
   formSubmit() {
     if ( !this.meetingForm.valid ) {

@@ -46,14 +46,14 @@
                         <ion-icon name='call-outline'></ion-icon>
                         Teléfono
                     </ion-label>
-                    <ion-input formControlName='phone' type='text'></ion-input>
+                    <ion-input formControlName='phone' type='number'></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label position='floating'>
                         <ion-icon name='mail-outline'></ion-icon>
                         Email
                     </ion-label>
-                    <ion-input formControlName='email' type='text'></ion-input>
+                    <ion-input formControlName='email' type='email'></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label position='floating'>
@@ -70,8 +70,7 @@
                     <ion-datetime display-format='MMMM DD, YYYY HH:mm'
                                   formControlName='date'
                                   [min]='minDate'
-                                  [max]='maxDate'
-                                  picker-format='MMMM DD, YYYY HH:mm'></ion-datetime>
+                    ></ion-datetime>
                 </ion-item>
 
                 <ion-row>
@@ -80,7 +79,6 @@
                         <ion-button color='danger' (click)='deleteMeeting()'>Eliminar cita</ion-button>
                     </ion-col>
                 </ion-row>
-
             </form>
         </ion-list>
     </div>

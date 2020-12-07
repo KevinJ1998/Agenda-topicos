@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MeetingService } from '../shared/meeting.service';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
@@ -16,7 +16,6 @@ export class EditMeetingPage implements OnInit {
   meetingEditForm: FormGroup;
   meetingData: any;
   minDate: string = new Date().toISOString();
-  maxDate: string = new Date().toISOString();
   loading: boolean;
 
   constructor(
@@ -36,7 +35,7 @@ export class EditMeetingPage implements OnInit {
         email: [ meetingData.email ],
         description: [ meetingData.description ],
         address: [ meetingData.address ],
-        date: [ new Date().toISOString() ]
+        date: [ meetingData.date ]
       } );
       this.loading = false;
     } );
@@ -45,12 +44,12 @@ export class EditMeetingPage implements OnInit {
   ngOnInit() {
     console.log( 'getValue', JSON.stringify( this.meetingData ) );
     this.meetingEditForm = new FormGroup( {
-      name: new FormControl(),
+      name: new FormControl( '', [ Validators.required ] ),
       lastName: new FormControl(),
       address: new FormControl(),
       phone: new FormControl(),
       description: new FormControl(),
-      email: new FormControl(),
+      email: new FormControl( '', [ Validators.email ] ),
       date: new FormControl()
     } );
   }
@@ -72,30 +71,31 @@ export class EditMeetingPage implements OnInit {
     }
   }
 
-  deleteMeeting() {
-    // const alert = await this.alertCtrl.create( {
-    //   header: 'Confirmar',
-    //   message: '¿Seguro quieres eliminar esta cita?',
-    //   buttons: [
-    //     {
-    //       text: 'No',
-    //       role: 'cancel'
-    //     },
-    //     {
-    //       text: 'Si',
-    //       handler: () => {
-    //         this.mtService.deleteMeeting( this.getKey );
-    //         this.router.navigate( [ '/home' ] );
-    //       }
-    //     }
-    //   ]
-    // } );
-    // await alert.present();
-
-    if ( window.confirm( '¿Seguro quieres eliminar esta cita?' ) ) {
-      this.mtService.deleteMeeting( this.getKey );
-      this.router.navigate( [ '/home' ] );
-    }
+  async deleteMeeting() {
+    const alert = await this.alertCtrl.create( {
+      header: 'Confirmar',
+      message: '¿Seguro quieres eliminar esta cita?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel'
+        },
+        {
+          text: 'Si',
+          handler: () => {
+            this.mtService.deleteMeeting( this.getKey );
+            this.router.navigate( [ '/home' ] );
+          }
+        }
+      ]
+    } );
+    await alert.present();
   }
+
+  //   if ( window.confirm( '¿Seguro quieres eliminar esta cita?' ) ) {
+  //     this.mtService.deleteMeeting( this.getKey );
+  //     this.router.navigate( [ '/home' ] );
+  //   }
+  // }
 
 }

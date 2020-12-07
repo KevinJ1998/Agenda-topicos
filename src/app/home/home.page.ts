@@ -17,8 +17,8 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.fetchMeetings();
     const meetingRes = this.mtService.getMeetingsList();
+    this.loadingData = true;
     meetingRes.snapshotChanges().subscribe( res => {
-      this.loadingData = true;
       this.Meetings = [];
       res.forEach( item => {
         const a = item.payload.toJSON();
@@ -39,5 +39,10 @@ export class HomePage implements OnInit {
     console.log( 'item', item );
     this.navCtrl.navigateForward( [ 'edit-meeting', { key: item[ '$key' ] } ] );
   }
+
+  goToMakeMeeting() {
+    this.navCtrl.navigateForward( [ 'make-meeting' ] );
+  }
+
 
 }
