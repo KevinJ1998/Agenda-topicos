@@ -1,0 +1,79 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot='start'>
+            <ion-back-button defaultHref='home' text='Atrás'></ion-back-button>
+        </ion-buttons>
+        <ion-title>Agendar Cita</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list lines='full'>
+        <form [formGroup]='meetingForm' (ngSubmit)='formSubmit()'>
+            <ion-item>
+                <ion-label position='floating'>
+                    <ion-icon name='person-outline'></ion-icon>
+                    Nombre*
+                </ion-label>
+                <ion-input formControlName='name' type='text' required></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position='floating'>
+                    <ion-icon name='person-outline'></ion-icon>
+                    Apellido
+                </ion-label>
+                <ion-input formControlName='lastName' type='text'></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position='floating'>
+                    <ion-icon name='map-outline'></ion-icon>
+                    Dirección
+                </ion-label>
+                <ion-input formControlName='address' type='text'></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position='floating'>
+                    <ion-icon name='call-outline'></ion-icon>
+                    Teléfono
+                </ion-label>
+                <ion-input formControlName='phone' type='text'></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position='floating'>
+                    <ion-icon name='mail-outline'></ion-icon>
+                    Email
+                </ion-label>
+                <ion-input formControlName='email' type='text'></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position='floating'>
+                    <ion-icon name='document-text-outline'></ion-icon>
+                    Descripción
+                </ion-label>
+                <ion-input formControlName='description' type='text'></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position='floating'>
+                    <ion-icon name='calendar-outline'></ion-icon>
+                    Fecha
+                </ion-label>
+                <ion-datetime display-format='MMMM DD, YYYY HH:mm'
+                              formControlName='date'
+                              [min]='minDate'
+                              [max]='maxDate'
+                              picker-format='MMMM DD, YYYY HH:mm'></ion-datetime>
+            </ion-item>
+
+            <ion-row>
+                <ion-col>
+                    <ion-button type='submit' color='primary' shape='full' expand='block'>
+                        <ion-spinner name='dots' [hidden]='!makingMeeting'></ion-spinner>
+                        Agendar
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+
+        </form>
+    </ion-list>
+
+</ion-content>

@@ -11,6 +11,14 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'make-meeting',
+    loadChildren: () => import('./make-meeting/make-meeting.module').then( m => m.MakeMeetingPageModule)
+  },
+  {
+    path: 'edit-meeting',
+    loadChildren: () => import('./edit-meeting/edit-meeting.module').then( m => m.EditMeetingPageModule)
+  },
 ];
 
 @NgModule({

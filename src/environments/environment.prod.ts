@@ -1,13 +1,12 @@
 export const environment = {
   production: true,
   firebaseConfig: {
-    apiKey: 'AIzaSyDeCjsWvoWN36-Lggo2_aZHOYwTz5Mi3M4',
-    authDomain: 'ionic-crud-75cf0.firebaseapp.com',
-    databaseURL: 'https://ionic-crud-75cf0-default-rtdb.firebaseio.com',
-    projectId: 'ionic-crud-75cf0',
-    storageBucket: 'ionic-crud-75cf0.appspot.com',
-    messagingSenderId: '773351375056',
-    appId: '1:773351375056:web:1401db6bdcc5a5f16f9ed5',
-    measurementId: 'G-8NXEK40QR0',
+    apiKey: 'AIzaSyARcZ2jrlpxQ3LYNic5d7m0dhd0ercnl6w',
+    authDomain: 'agenda-a7165.firebaseapp.com',
+    projectId: 'agenda-a7165',
+    storageBucket: 'agenda-a7165.appspot.com',
+    messagingSenderId: '660136276002',
+    appId: '1:660136276002:web:5d71c454c4ce26d0569a7b',
+    measurementId: 'G-SWQ146Y6XN'
   }
 };
